@@ -1,13 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import OutlateButton from '../components/OutlineButton'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useUser } from '../context/UserContext'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
   const {addUser} = useUser()
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const [newUser, setNewUser] = useState({
     name: "",
@@ -21,13 +24,21 @@ const SignUp = () => {
   function handleAddUser(e) {
     e.preventDefault();
     addUser(newUser.email, newUser.password)
-  }
-
+    setLoading(true)
+    
+      setTimeout(()=> {
+          navigate("/login")
+          setLoading(false)
+        }, 4000)
+      }
 
 
 
   return (
+    <>
+    
     <section>
+      <ToastContainer/> 
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[4fr_3fr] gap-6 xl:gap-10 items-center'>
         <div>
           <img className='w-full max-h-[780px] object-cover' src="/login-image.png" alt="image" />
@@ -41,7 +52,9 @@ const SignUp = () => {
               <Input onChange={(e)=>handleChange(e)} value={newUser.name} name="name" placeholder={"Name"} />
               <Input onChange={(e)=>handleChange(e)} placeholder={"Email or Phone Number"} name="email" />
               <Input onChange={(e)=>handleChange(e)} placeholder={"Password"} name="password" />
-              <Button onClick={(e)=>handleAddUser(e) } TagName={"button"} type='submit'>Create Account</Button>
+              <Button onClick={(e)=>handleAddUser(e) } TagName={"button"} type='submit'>
+                {loading? "Creating...": "Create Account"}
+              </Button>
               <OutlateButton TagName={"button"}>
                 <img src="/google-icon.png" alt="icon" />
                 Sign up with Google
@@ -52,6 +65,7 @@ const SignUp = () => {
         </div>
       </div>
     </section>
+    </>
   )
 }
 
