@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase.config"
 import { toast, Bounce } from 'react-toastify';
 
@@ -46,10 +46,10 @@ const UserProvider = ({ children }) => {
                         notify("error", errorCode)
 
                     });
-            }else {
+            } else {
                 notify("error", "At least 6 chars incl. uppercase, lowercase, number & special.")
             }
-            
+
 
         }
 
@@ -72,37 +72,48 @@ const UserProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log("Current USER: ",currentUser);
-        
-        const unsubscribe = onAuthStateChanged(auth, (user)=> {
+        console.log("Current USER: ", currentUser);
+
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setCurrentUser(user)
-            }else {
+            } else {
                 setCurrentUser(null)
             }
 
         })
 
-        return ()=> unsubscribe()
+        return () => unsubscribe()
     }, [currentUser])
 
-    async function logout () {
+    async function logout() {
 
         await signOut(auth)
 
-        try{
-           notify("success", "Successfully logout") 
+        try {
+            notify("success", "Successfully logout")
         }
         catch (err) {
             console.log(err);
-            
+
         }
+    }
+
+    const googleProvider = new GoogleAuthProvider();
+
+    function googleLogin() {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                GoogleAuthProvider.credentialFromResult(result);
+            }).catch((error) => {
+                GoogleAuthProvider.credentialFromError(error);
+            });
     }
 
 
 
     return (
-        <UserContex.Provider value={{ currentUser, setCurrentUser, addUser, logIn, logout }}>
+        <UserContex.Provider value={{ currentUser, setCurrentUser, addUser, logIn, logout, googleLogin }}>
             {children}
         </UserContex.Provider>
     )
