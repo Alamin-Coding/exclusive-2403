@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createContext, useContext, useEffect, useState } from "react";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase.config"
 import { toast, Bounce } from 'react-toastify';
 
@@ -59,24 +59,50 @@ const UserProvider = ({ children }) => {
 
     }
 
-    const logIn = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            setCurrentUser(user)
+    const logIn = async (email, password) => {
+        await signInWithEmailAndPassword(auth, email, password)
+
+        try {
             notify("success", "Successfuly login")
+        }
+        catch (error) {
+            notify("error", error)
+        }
+
+    }
+
+    useEffect(() => {
+        console.log("Current USER: ",currentUser);
+        
+        const unsubscribe = onAuthStateChanged(auth, (user)=> {
+            if (user) {
+                setCurrentUser(user)
+            }else {
+                setCurrentUser(null)
+            }
+
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            notify("error", errorCode)
-        });
+
+        return ()=> unsubscribe()
+    }, [currentUser])
+
+    async function logout () {
+
+        await signOut(auth)
+
+        try{
+           notify("success", "Successfully logout") 
+        }
+        catch (err) {
+            console.log(err);
+            
+        }
     }
 
 
+
     return (
-        <UserContex.Provider value={{ currentUser, setCurrentUser, addUser, logIn }}>
+        <UserContex.Provider value={{ currentUser, setCurrentUser, addUser, logIn, logout }}>
             {children}
         </UserContex.Provider>
     )

@@ -5,14 +5,19 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
 import ErrorPage from "./pages/ErrorPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useUser } from "./context/UserContext";
 const App = () => {
+  const {currentUser} = useUser()
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout/>}>
-          <Route index={true} element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route index={true} element={<ProtectedRoute user={currentUser}>
+            <Home />
+          </ProtectedRoute>} />
         </Route>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>

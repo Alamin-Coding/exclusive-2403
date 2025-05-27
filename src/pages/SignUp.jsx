@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify';
 const SignUp = () => {
   const {addUser} = useUser()
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
 
   const [newUser, setNewUser] = useState({
     name: "",
@@ -24,12 +23,6 @@ const SignUp = () => {
   function handleAddUser(e) {
     e.preventDefault();
     addUser(newUser.email, newUser.password)
-    setLoading(true)
-    
-      setTimeout(()=> {
-          navigate("/login")
-          setLoading(false)
-        }, 4000)
       }
 
 
@@ -38,7 +31,6 @@ const SignUp = () => {
     <>
     
     <section>
-      <ToastContainer/> 
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[4fr_3fr] gap-6 xl:gap-10 items-center'>
         <div>
           <img className='w-full max-h-[780px] object-cover' src="/login-image.png" alt="image" />
@@ -53,7 +45,8 @@ const SignUp = () => {
               <Input onChange={(e)=>handleChange(e)} placeholder={"Email or Phone Number"} name="email" />
               <Input onChange={(e)=>handleChange(e)} placeholder={"Password"} name="password" />
               <Button onClick={(e)=>handleAddUser(e) } TagName={"button"} type='submit'>
-                {loading? "Creating...": "Create Account"}
+                {/* {loading? "Creating...": "Create Account"} */}
+                Create Account
               </Button>
               <OutlateButton TagName={"button"}>
                 <img src="/google-icon.png" alt="icon" />
