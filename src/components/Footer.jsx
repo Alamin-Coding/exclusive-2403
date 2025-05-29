@@ -1,7 +1,10 @@
+import Section from "./Section"
 
 const Footer = () => {
   return (
-    <div>Footer </div>
+    <Section Tagname="div" className={""}>
+     <p>Footer</p>
+    </Section>
   )
 }
 

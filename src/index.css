@@ -4,3 +4,48 @@
     margin-inline: auto;
     padding-inline: 1rem;
   }
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 75.125rem;
+}
+.button_after {
+  position: relative;
+}
+
+.button_after::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 1px;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 11px !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.slick-dots li  {}
+.slick-dots li {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid #7D8184 !important;
+  font-size: 0 !important;
+  background: #7D8184 !important;
+  border-radius: 50% !important;
+}
+.slick-dots li button {
+  opacity: 0;
+}
+.slick-dots li.slick-active {
+  background: #DB4444 !important;
+  border: 2px solid #ffffff !important;
+}
