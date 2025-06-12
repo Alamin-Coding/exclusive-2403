@@ -8,6 +8,7 @@
   /* Colors  */
   --color-primary: #DB4444;
   --color-secondary: #235689;
+  --color-secondary-2: #DB4444;
   --color-white: #fefefe;
 
   
@@ -37,6 +38,8 @@
   left: 50% !important;
   transform: translateX(-50%);
   z-index: 100;
+  display: flex !important;
+  gap: 7px !important;
 }
 
 .slick-dots li  {}
@@ -47,6 +50,7 @@
   font-size: 0 !important;
   background: #7D8184 !important;
   border-radius: 50% !important;
+  cursor: pointer;
 }
 .slick-dots li button {
   opacity: 0;
@@ -54,4 +58,28 @@
 .slick-dots li.slick-active {
   background: #DB4444 !important;
   border: 2px solid #ffffff !important;
+}
+
+
+/* flash-sale */
+#flash-sale .arrow {
+  position: absolute;
+  top: -75px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #F5F5F5;
+}
+
+#flash-sale .arrow.prev-arrow {
+  right: 65px;
+  z-index: 100;
+}
+#flash-sale .arrow.next-arrow {
+  right: 16px;
+  z-index: 100;
 }

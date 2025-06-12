@@ -7,10 +7,11 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import nextArrow from "../assets/icons/next-arrow.svg"
 import Button from './Button'
 import { Link } from 'react-router'
+import CategoryCard from './CategoryCard'
 
 
 
-const FlashSales = () => {
+const Category = () => {
   const settings = {
       dots: false,
       infinite: true,
@@ -24,13 +25,13 @@ const FlashSales = () => {
 
   return (
     <Section className="pt-[140px] pb-[60px]" id="flash-sale">
-        <SectionHeading subHeading="Today’s" heading="Flash Sale" countDown={true}/>
+        <SectionHeading subHeading="Categories" heading="Browse By Category"/>
 
         <div className=' pt-10 w-[1170px]'>
           <Slider {...settings}>
             {[1,2,3,4,5,6].map((item, i) => (
               <div className='px-3' key={i}>
-                <ProductCard />
+                <CategoryCard />
               </div>
             ))}
           </Slider>
@@ -42,7 +43,7 @@ const FlashSales = () => {
   )
 }
 
-export default FlashSales
+export default Category
 
 
 const PrevArrow = (props)=> {

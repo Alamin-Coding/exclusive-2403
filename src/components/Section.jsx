@@ -1,7 +1,7 @@
 
-const Section = ({Tagname="section" ,children, className}) => {
+const Section = ({Tagname="section" ,children, className, ...props}) => {
   return (
-    <Tagname className={className}>
+    <Tagname className={className} {...props}>
         <div className="container">
             {children}
         </div>

@@ -1,7 +1,5 @@
 import { FaArrowRight, FaChevronRight } from "react-icons/fa"
 import Section from "./Section"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import image_1 from "../assets/banner-1.jpg"
