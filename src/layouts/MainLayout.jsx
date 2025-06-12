@@ -20,7 +20,7 @@ const MainLayout = () => {
 
         <Outlet />
 
-        {currentUser && <Footer />}
+        {/* {currentUser && <Footer />} */}
         
     </main>
   )

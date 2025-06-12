@@ -7,10 +7,26 @@ import Slider from "react-slick";
 import image_1 from "../assets/banner-1.jpg"
 import brand_icon_1 from "../assets/brand-icon-1.png"
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
 
 
 
 const Banner = () => {
+  // const [state, setState] = useState(0)
+  //     useEffect(()=>{
+  //       // console.log("Call useEffect ..");
+
+  //         const timer =  setInterval(()=> {
+  //           setState(state+1)
+  //           console.log(state);
+            
+  //         }, 1000)
+
+  //         return ()=> clearInterval(timer)
+        
+  //   }, [state])
+
+
 
    const settings = {
     dots: true,

@@ -5,6 +5,12 @@
     padding-inline: 1rem;
   }
 @theme {
+  /* Colors  */
+  --color-primary: #DB4444;
+  --color-secondary: #235689;
+  --color-white: #fefefe;
+
+  
   --breakpoint-*: initial;
   --breakpoint-sm: 40rem;
   --breakpoint-md: 48rem;

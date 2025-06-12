@@ -1,18 +1,16 @@
 
 import Banner from '../components/Banner'
+import FlashSales from '../components/FlashSales'
 // import { useUser } from '../context/UserContext'
 // import { useNavigate } from 'react-router'
 
 const Home = () => {
-  // const navigate = useNavigate()
-  // const {logout} = useUser()
-  // const handleLogout = () => {
-  //     logout()
-  //     navigate("/login")
-  // }
+  
+  
   return (
     <>
     <Banner />
+    <FlashSales />
     </>
   )
 }
