@@ -8,6 +8,10 @@ import nextArrow from "../assets/icons/next-arrow.svg"
 import Button from './Button'
 import { Link } from 'react-router'
 import CategoryCard from './CategoryCard'
+import {categoryData} from "../data/data.js"
+
+console.log(categoryData);
+
 
 
 
@@ -16,7 +20,7 @@ const Category = () => {
       dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 6,
       slidesToScroll: 1,
       arrows: true,
       prevArrow: <PrevArrow />,
@@ -29,9 +33,9 @@ const Category = () => {
 
         <div className=' pt-10 w-[1170px]'>
           <Slider {...settings}>
-            {[1,2,3,4,5,6].map((item, i) => (
+            {categoryData.map((item, i) => (
               <div className='px-3' key={i}>
-                <CategoryCard />
+                <CategoryCard icon={item.icon} text={item.text} />
               </div>
             ))}
           </Slider>
