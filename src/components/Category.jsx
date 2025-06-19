@@ -10,8 +10,6 @@ import { Link } from 'react-router'
 import CategoryCard from './CategoryCard'
 import {categoryData} from "../data/data.js"
 
-console.log(categoryData);
-
 
 
 

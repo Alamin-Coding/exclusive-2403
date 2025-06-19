@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useUser } from "./context/UserContext";
+import ProductPage from "./pages/ProductPage";
 const App = () => {
   const {currentUser} = useUser()
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route index={true} element={<ProtectedRoute user={currentUser}>
             <Home />
           </ProtectedRoute>} />
+          <Route path="/product" element={<ProductPage />} />
         </Route>
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>

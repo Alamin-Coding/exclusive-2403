@@ -6,7 +6,6 @@ import cardImage_2 from "../assets/keyboard.png";
 import StarRating from "./StarRating";
 
 const ProductCard = ({image,title , price, oldPrice, discount, discountPercentage, rating}) => {
-  console.log(rating);
   
   return (
     <div className="grid grid-cols-1">
