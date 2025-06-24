@@ -5,8 +5,7 @@ import { Link } from "react-router";
 const ProductPage = () => {
     const [allProducts, setAllProducts] = useState([]);
     const [showProduct, setShowProduct] = useState([]);
-    const [number, setNumber] = useState(0);
-    console.log(number);
+    const [number, setNumebr] = useState(30);
     
 
 
@@ -24,9 +23,8 @@ const ProductPage = () => {
     }
 
     function showNumberOfProduct(event) {
-        setNumber(event.target.value)
-
-        setShowProduct(pre => pre.slice(0, Number(number)))
+        setNumebr(event.target.value)
+        setShowProduct(allProducts.slice(0, Number(event.target.value)))
     }
 
     
@@ -61,8 +59,19 @@ const ProductPage = () => {
             {/* Products */}
             <div>
                 <div className="flex justify-end">
-                    <input onChange={(e) => showNumberOfProduct(e)} className="border border-gray-600 p-2" type="number" placeholder="0" />
+                    {/* <input onChange={(e)=> showNumberOfProduct(e)} className="border border-gray-600 p-2" type="number" placeholder="0" /> */}
+                    <label htmlFor="">Show :</label>
+                    <select name="" id="" onChange={(e)=> showNumberOfProduct(e)}>
+                        <option value={allProducts.length} selected>All</option>
+                        <option value="3">3</option>
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                    </select>
                 </div>
+                {number <= 0 && <div className="w-full p-20 flex items-center justify-center">
+                        
+                        <p className="font-bold text-2xl">No Product Found!</p>
+                    </div>}
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
                 {showProduct?.map(({id, thumbnail, title , price, oldPrice, discount, discountPercentage, rating})=> (
                     <ProductCard

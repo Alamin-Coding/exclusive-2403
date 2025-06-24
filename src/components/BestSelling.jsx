@@ -7,8 +7,7 @@ import { Link } from 'react-router'
 import { useEffect, useState } from 'react'
 
 const BestSelling = () => {
-const [products, setProducts] = useState([])
-console.log(products);
+const [products, setProducts] = useState([]);
 
 
 

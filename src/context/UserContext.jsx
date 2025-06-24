@@ -92,6 +92,8 @@ const UserProvider = ({ children }) => {
 
         try {
             notify("success", "Successfully logout")
+            console.log("Successfully logout");
+            
         }
         catch (err) {
             console.log(err);
