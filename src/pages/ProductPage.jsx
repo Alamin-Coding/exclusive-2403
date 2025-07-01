@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 
 const ProductPage = () => {
     const [allProducts, setAllProducts] = useState([]);
     const [showProduct, setShowProduct] = useState([]);
     const [number, setNumebr] = useState(30);
+
+
     
 
 
@@ -73,17 +76,9 @@ const ProductPage = () => {
                         <p className="font-bold text-2xl">No Product Found!</p>
                     </div>}
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-                {showProduct?.map(({id, thumbnail, title , price, oldPrice, discount, discountPercentage, rating})=> (
+                {showProduct?.map((item)=> (
                     <ProductCard
-                     key={id} 
-                     image={thumbnail}
-                     title={title}
-                     price={price}
-                     oldPrice={oldPrice}
-                     discount={discount}
-                     discountPercentage={discountPercentage}
-                     rating={rating}
-                      />
+                     key={item.id} product={item}/>
                 ))}
             </div>
             </div>

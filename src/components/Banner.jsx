@@ -46,6 +46,8 @@ const Banner = () => {
           </ul>
         </div>
 
+        
+
         {/* rightside-slider */}
         <div className="w-[937px] ml-auto pt-10 pl-10">
            <Slider {...settings}>

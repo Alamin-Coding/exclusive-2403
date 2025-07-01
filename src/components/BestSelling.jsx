@@ -25,7 +25,7 @@ useEffect(()=> {
         <div className=' pt-10 grid grid-cols-4 gap-6'>
           {products?.map((item, i) => (
               <div className='px-3' key={i}>
-                <ProductCard image={item.thumbnail} title={item.title} price={item.price} discountPercentage={item.discountPercentage} rating={item.rating}/>
+                <ProductCard product={item}/>
               </div>
             ))}
         </div>

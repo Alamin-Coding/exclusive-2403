@@ -30,7 +30,7 @@ const FlashSales = () => {
           <Slider {...settings}>
             {[1,2,3,4,5,6].map((item, i) => (
               <div className='px-3' key={i}>
-                <ProductCard />
+                <ProductCard product={item} />
               </div>
             ))}
           </Slider>

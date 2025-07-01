@@ -10,17 +10,20 @@ const MainLayout = () => {
   return (
     <main>
         <ToastContainer/> 
-        {
+        <Topbar/>
+        <Navbar />
+        {/* {
         currentUser && <>
           <Topbar/>
           <Navbar />
         </>
-        }
+        } */}
         
 
         <Outlet />
 
         {/* {currentUser && <Footer />} */}
+        <Footer />
         
     </main>
   )

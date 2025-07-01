@@ -1,16 +1,22 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useUser } from '../context/UserContext'
 import userIcon from "../assets/icons/user.png"
 import cancelIcon from "../assets/icons/icon-cancel.png"
 import mallbagIcon from "../assets/icons/icon-mallbag.png"
 import reviewsIcon from "../assets/icons/Icon-reviews.png"
 import logoutIcon from "../assets/icons/icon-logout.png"
+import { useSelector } from 'react-redux'
 const Navbar = () => {
+    const navigate = useNavigate()
     const [dropdown, setDropdown] = useState(false)
     const {currentUser} = useUser();
+
+    const {wishList} = useSelector((state)=> state)
+    
+
   return (
-    <nav className='pt-10 pb-4 border-b border-b-gray-400'>
+    <nav className='pt-10 pb-4 border-b border-b-gray-400 sticky top-0 left-0 w-full z-20 bg-white'>
       <div className="container">
         <div className='grid grid-cols-[auto_1fr_auto] gap-3'>
             <div>
@@ -39,8 +45,9 @@ const Navbar = () => {
                     <button><img src="/search.png" alt="search" /></button>
                 </form>
                 <div className='flex items-center gap-2'>
-                    <button className='cursor-pointer'>
+                    <button onClick={()=> navigate("/wishlist")} className='cursor-pointer'>
                         <img src="/wishlist.png" alt="wishlist" />
+                        <span>{wishList.length}</span>
                     </button>
                     <button className='cursor-pointer'>
                         <img src="/cart.png" alt="cart" />
